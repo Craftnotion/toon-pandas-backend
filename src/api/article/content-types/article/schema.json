@@ -71,6 +71,11 @@
         "videos",
         "audios"
       ]
+    },
+    "flag": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   }
 }

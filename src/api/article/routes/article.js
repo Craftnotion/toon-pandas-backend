@@ -3,8 +3,8 @@
 /**
  * article router
  */
-
-const { createCoreRouter } = require('@strapi/strapi').factories;
+ 
+//const { createCoreRouter } = require('@strapi/strapi').factories;
 
 module.exports = {
   routes: [
@@ -16,8 +16,15 @@ module.exports = {
     },
     {
       method: "GET",
+      path: "/articles/editors-pick",
+      handler: "article.editorPicks",
+      config: { auth: false },
+    },
+    {
+      method: "GET",
       path: "/articles/:id",
       handler: "article.findOne",
     },
+    
   ],
 };

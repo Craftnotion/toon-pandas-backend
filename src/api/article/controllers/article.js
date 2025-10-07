@@ -72,4 +72,22 @@ module.exports = createCoreController("api::article.article", ({ strapi }) => ({
     return { data: article[0] };
   },
 
+
+
+  // ✅ New API: Get Editor’s Pick Articles
+  async editorPicks(ctx) {
+    try {
+      const articles = await strapi.entityService.findMany("api::article.article", {
+        filters: { flag: true },
+        populate: ["sub_category", "sub_category.category", "background", "card_image"],
+        sort: { createdAt: "desc" },
+      });
+
+      return { data: articles[0] || null};
+    } catch (error) {
+      console.error("Error fetching editor's pick articles:", error);
+      ctx.throw(500, "Internal server error");
+    }
+  },
+
 }));
