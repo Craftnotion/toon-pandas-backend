@@ -1,3 +1,4 @@
+
 "use strict";
 const { createCoreController } = require("@strapi/strapi").factories;
 
@@ -13,7 +14,7 @@ module.exports = createCoreController("api::article.article", ({ strapi }) => ({
         ...(categorySlug && { category: { slug: categorySlug } }),
       },
     };
-
+ 
     const articles = await strapi.entityService.findMany("api::article.article", {
       filters,
       populate: ["sub_category", "sub_category.category", "background", "card_image"],
@@ -79,6 +80,4 @@ module.exports = createCoreController("api::article.article", ({ strapi }) => ({
       console.error("Error fetching editor's pick articles:", error);
       ctx.throw(500, "Internal server error");
     }
-  },
-
-}));
+  },}));
