@@ -37,9 +37,6 @@
 //       },
 //     };
 //   },
-
-
-
 // }));
 
 
@@ -48,7 +45,7 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::project.project", ({ strapi }) => ({
 
-  // ✅ Custom filter API
+  // Custom filter API
   async filter(ctx) {
     const { categorySlug, subCategorySlug, page = 1, pageSize = 5 } = ctx.query;
 
@@ -83,7 +80,7 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     };
   },
 
-  // ✅ Custom findOne API (by id or slug)
+  //  Custom findOne API (by id or slug)
   async findOne(ctx) {
     const { id } = ctx.params; // dynamic param from route (can be id or slug)
 
