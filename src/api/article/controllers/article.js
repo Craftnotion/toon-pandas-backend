@@ -74,7 +74,7 @@ module.exports = createCoreController("api::article.article", ({ strapi }) => ({
 
 
 
-  // ✅ New API: Get Editor’s Pick Articles
+  // New API: Get Editor’s Pick Articles
   async editorPicks(ctx) {
     try {
       const articles = await strapi.entityService.findMany("api::article.article", {
