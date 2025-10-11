@@ -26,7 +26,7 @@ jobs:
           yarn build
 
       - name: Graceful Process Termination
-        working-directory: /var/www/html/frontend/ramani
+        working-directory: /var/www/html/backend/toon
         run: |
           # Ensure clean slate for services
           pm2 delete all || true
