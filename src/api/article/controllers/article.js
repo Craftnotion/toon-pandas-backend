@@ -71,7 +71,7 @@ module.exports = createCoreController("api::article.article", ({ strapi }) => ({
 
 
 
-  //  New API: Get Editor’s Pick Articles
+  //  New API: Get Editor's Pick Articles
   async editorPicks(ctx) {
     try {
       const articles = await strapi.entityService.findMany("api::article.article", {
@@ -85,4 +85,21 @@ module.exports = createCoreController("api::article.article", ({ strapi }) => ({
       console.error("Error fetching editor's pick articles:", error);
       ctx.throw(500, "Internal server error");
     }
-  },}));
+  },
+
+  // Get all article slugs for static generation
+  async getSlugs(ctx) {
+    try {
+      const articles = await strapi.entityService.findMany("api::article.article", {
+        fields: ["slug"],
+      });
+
+      return { 
+        data: articles.map(article => ({ slug: article.slug }))
+      };
+    } catch (error) {
+      console.error("Error fetching article slugs:", error);
+      ctx.throw(500, "Internal server error");
+    }
+  },
+}));

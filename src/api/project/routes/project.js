@@ -26,6 +26,12 @@ module.exports = {
     },
     {
       method: "GET",
+      path: "/projects/slugs",
+      handler: "project.getSlugs",
+      config: { auth: false },
+    },
+    {
+      method: "GET",
       path: "/projects/:id",
       handler: "project.findOne",
     },

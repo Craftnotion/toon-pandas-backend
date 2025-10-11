@@ -22,6 +22,12 @@ module.exports = {
     },
     {
       method: "GET",
+      path: "/articles/slugs",
+      handler: "article.getSlugs",
+      config: { auth: false },
+    },
+    {
+      method: "GET",
       path: "/articles/:id",
       handler: "article.findOne",
     },

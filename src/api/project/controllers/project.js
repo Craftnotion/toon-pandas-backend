@@ -63,4 +63,20 @@ module.exports = createCoreController("api::project.project", ({ strapi }) => ({
     return { data: project[0] };
   },
 
+  // Get all project slugs for static generation
+  async getSlugs(ctx) {
+    try {
+      const projects = await strapi.entityService.findMany("api::project.project", {
+        fields: ["slug"],
+      });
+
+      return { 
+        data: projects.map(project => ({ slug: project.slug }))
+      };
+    } catch (error) {
+      console.error("Error fetching project slugs:", error);
+      ctx.throw(500, "Internal server error");
+    }
+  },
+
 }));
