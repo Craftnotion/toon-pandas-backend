@@ -567,6 +567,44 @@ export interface ApiNewsLetterNewsLetter extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiOurPortfolioOurPortfolio
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'our_portfolios';
+  info: {
+    displayName: 'our-portfolio';
+    pluralName: 'our-portfolios';
+    singularName: 'our-portfolio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    background: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    > &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    is_horizontal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::our-portfolio.our-portfolio'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    sub_title: Schema.Attribute.Text & Schema.Attribute.Required;
+    tags: Schema.Attribute.JSON;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   collectionName: 'projects';
   info: {
@@ -1226,6 +1264,7 @@ declare module '@strapi/strapi' {
       'api::contact-submission.contact-submission': ApiContactSubmissionContactSubmission;
       'api::editors-pick.editors-pick': ApiEditorsPickEditorsPick;
       'api::news-letter.news-letter': ApiNewsLetterNewsLetter;
+      'api::our-portfolio.our-portfolio': ApiOurPortfolioOurPortfolio;
       'api::project.project': ApiProjectProject;
       'api::sub-category.sub-category': ApiSubCategorySubCategory;
       'api::team.team': ApiTeamTeam;
